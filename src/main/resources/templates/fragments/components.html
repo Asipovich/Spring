@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="header_fragment_logo">
+		<div class="logo">
+			<h1 class="appName" >Hungry Student</h1>
+			<a class="sing-in-button" href="/singin">Sing In</a>
+		</div>
+</header>
+
+<header th:fragment="navbar_fragment">
+	<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><img src="/images/favicon.png" alt="icon" ></a>
+			<div class="toggler">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="navig-link home"  href="#"> Strona główna </a></li>
+					<li class="nav-item"><a class="navig-link contact" href="#"> Account </a></li>
+				</ul>
+				<div class="toggler">
+					<button class="sing-out-btn btn btn-outline-success" type="submit">Sing Out</button>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+</header>
+
+<footer th:fragment="footer_fragment">
+	<footer class="text-center text-lg-start bg-light text-muted">
+		<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+			<div class="me-5 d-none d-lg-block">
+				<span>Get connected with us on social networks:</span>
+			</div>
+			<div>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-facebook-square"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-twitter"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-google"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-instagram"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-linkedin"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-github"></i>
+				</a>
+			</div>
+		</section>
+		<section class="">
+			<div class="container text-center text-md-start mt-5">
+				<div class="row mt-3">
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+						<h6 class="text-uppercase fw-bold mb-4">
+							</i>Hungry Student
+						</h6>
+						<p>
+							Here you can use rows and columns to organize your footer content. Lorem ipsum
+							dolor sit amet, consectetur adipisicing elit.
+						</p>
+					</div>
+					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+						<h6 class="text-uppercase fw-bold mb-4">
+							Contact
+						</h6>
+						<p><i class="fas fa-home me-3"></i> Poland, Lublin, PL</p>
+						<p>
+							<i class="fas fa-envelope me-3"></i>
+							hungry-student@gmail.com
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+			© 2021 Copyright: <i class="fas fa-hamburger"></i> Hungry Student
+			<!--<a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>-->
+		</div>
+	</footer>
+</footer>
+
+<div th:fragment="sing_in_fragment">
+	<div class="container">
+		<div class="row col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+			<div class="margin"></div>
+			<div class=" sing-in-panel ">
+				<h2 class="sing-in-label">Sing In</h2>
+				<p class="sing-in-label-2">Please enter your login and password!</p>
+				<div class=" form-white ">
+					<input type="email" id="typeEmailX" class="form-control form-control-lg" />
+					<label class="form-label" for="typeEmailX">Email</label>
+				</div>
+				<div class=" form-white ">
+					<input type="password" id="typePasswordX" class="form-control form-control-lg" />
+					<label class="form-label" for="typePasswordX">Password</label>
+				</div>
+				<button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+				<div>
+					<p class="sing-in-label-2">Don't have an account? <a href="/singup" class="text-white-50 fw-bold">Sign Up</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div th:fragment="sing_up_fragment">
+	<div class="container">
+		<div class="row  col-10 offset-1 col-md-6 offset-md-3 ">
+			<div class="margin"></div>
+			<div class=" sing-in-panel ">
+				<h2 class="sing-in-label">Sing Up</h2>
+				<p class="sing-in-label-2">Please enter your account details!</p>
+				<div class="part">
+					<div class=" form-white ">
+						<input type="text" id="typeName" class="form-control form-control-lg" />
+						<label class="form-label" for="typeName">Name</label>
+					</div>
+
+					<div class=" form-white ">
+						<input type="email" id="typeEmailX" class="form-control form-control-lg" />
+						<label class="form-label" for="typeEmailX">Email</label>
+					</div>
+				</div>
+				<div class="part">
+					<div class=" form-white ">
+						<input type="text" id="typeLastName" class="form-control form-control-lg" />
+						<label class="form-label" for="typeLastName">Last name</label>
+					</div>
+					<div class=" form-white ">
+						<input type="password" id="typePasswordX" class="form-control form-control-lg" />
+						<label class="form-label" for="typePasswordX">Password</label>
+					</div>
+				</div>
+				<div></div>
+
+				<button class="btn btn-outline-light btn-lg px-5" type="submit">Sing Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
