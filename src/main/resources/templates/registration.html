@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <script th:include="fragments/header :: headerScripts" th:remove="tag"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hungry student</title>
+    <meta name="title" content="Hungry student">
+    <meta name="description" content="Application for students who want to learn cooking">
+    <meta name="keywords" content="for students, hungry, eat, meal, burger, student ">
+    <meta name="author" content="Ivan Asipovich">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/css/singUpPanel.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row  col-10 offset-1 col-md-6 offset-md-3 ">
+        <div class="margin"></div>
+        <form th:action="@{/registration}" th:object="${user}" method="POST" class=" sing-in-panel " value="False" >
+
+            <h2 class="sing-in-label">Sing Up</h2>
+            <p class="sing-in-label-2">Please enter your account details!</p>
+            <div class="part">
+                <div class=" form-white ">
+                    <input type="text" id="firstName" class="form-control form-control-lg" name="FirstName" th:field="*{firstName}" />
+                    <label class="form-label" for="firstName">First Name</label>
+                </div>
+                <div class=" form-white ">
+                    <input type="email" id="email" class="form-control form-control-lg" name="Email" th:field="*{email}"/>
+                    <label class="form-label" for="email">Email</label>
+                </div>
+            </div>
+            <div class="part">
+                <div class=" form-white ">
+                    <input type="text" id="lastName" class="form-control form-control-lg" name="LastName" th:field="*{lastName}" />
+                    <label class="form-label" for="lastName">Last name</label>
+                </div>
+                <div class=" form-white ">
+                    <input type="password" id="password" class="form-control form-control-lg" name="Password" />
+                    <label class="form-label" for="password">Password</label>
+                </div>
+            </div>
+            <div class="errors"  th:each="el:${errors}">
+                <p th:text="${el}"></p>
+            </div>
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully registered
+                    to our awesome app!</div>
+            </div>
+            <button class="btn btn-outline-light btn-lg px-5" type="submit">Sing Up</button>
+            <div>
+                <p class="sing-in-label-2">Back to <a href="/login" class="text-white-50 fw-bold">Sign In</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

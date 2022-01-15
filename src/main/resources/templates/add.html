@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <script th:include="fragments/header :: headerScripts" th:remove="tag"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hungry student</title>
+    <meta name="title" content="Hungry student">
+    <meta name="description" content="Application for students who want to learn cooking">
+    <meta name="keywords" content="for students, hungry, eat, meal, burger, student ">
+    <meta name="author" content="Ivan Asipovich">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/css/dashboard.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+<div th:insert="fragments/components :: navbar_fragment"></div>
+<a href="/" class="back col-1 offset-10 offset-md-8 " > <span class="arrow">&#8592;</span></a>
+<div class="container">
+    <div class="row  col-10 offset-1 col-md-6 offset-md-3 ">
+        <div class="margin"></div>
+        <form th:action="@{/add}" th:object="${dish}" method="POST" class=" sing-in-panel " value="False" >
+
+            <h2 class="sing-in-label">Add new dish</h2>
+            <p class="sing-in-label-2">Please enter dish details!</p>
+            <div class=" form-white ">
+                <label class="form-label" for="dish_name">Dish name</label>
+                <input type="text" id="dish_name" class="form-control form-control-lg" name="dish_name" th:value="${placeholders[0]}" />
+            </div>
+            <div class=" form-white ">
+                <label class="form-label" for="dish_desc">Dish description</label>
+                <textarea maxlength="500" type="text" id="dish_desc" class="form-control form-control-lg" name="dish_desc" /><p th:text="${placeholders[1]}" th:remove="tag"></p></textarea>
+            </div>
+            <div class=" form-white ">
+                <label class="form-label" for="dish_recipe">Dish recipe</label>
+                <textarea maxlength="1500" type="text" rows="8" id="dish_recipe" class="form-control form-control-lg" name="dish_recipe"  /><p th:text="${placeholders[2]}" th:remove="tag"></p></textarea>
+            </div>
+            <div class="errors"  th:each="el:${errors}">
+                <p th:text="${el}"></p>
+            </div>
+            <div class=" btn-add ">
+                <button class="sing-out-btn btn btn-outline-success " type="submit">Add new</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div th:insert="fragments/components :: footer_fragment"></div>
+</body>
+</html>
