@@ -127,14 +127,6 @@ public class MainController {
         return "edit";
 
     }
-    @GetMapping("/edit")
-    public String edit(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        model.addAttribute("placeholders", placeholders);
-        model.addAttribute("name", name);
-        return "edit";
-    }
 
     @PostMapping("/edit{dish_name}")
     public String saveEditedDish(@RequestParam String dish_name, @RequestParam String dish_desc,
