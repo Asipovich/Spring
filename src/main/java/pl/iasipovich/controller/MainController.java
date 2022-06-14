@@ -5,10 +5,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.iasipovich.dto.UserRegistrationDto;
 import pl.iasipovich.model.Dish;
 import pl.iasipovich.repository.DishRepository;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +24,12 @@ public class MainController {
     public String login() {
         return "login";
     }
-    List<String> placeholders = Arrays.asList("", "", "");
+    List<String> placeholders = Arrays.asList("", "", "","");
+
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
 
     @GetMapping("/")
     public String home(Model model) {
@@ -38,6 +46,36 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/all_my_dishes")
+    public String allMy(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Iterable<Dish> allDishes = dishRepository.findAll();
+        List<Dish> dishes = new ArrayList<>();
+        allDishes.forEach(dish -> {
+            if(dish.getUser_name().equals(name))
+                dishes.add(dish);
+        });
+        model.addAttribute("dishes",dishes);
+        model.addAttribute("name", name);
+        return "allmydishes";
+    }
+
+    @GetMapping("/public")
+    public String myPublicDishes(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Iterable<Dish> allDishes = dishRepository.findAll();
+        List<Dish> dishes = new ArrayList<>();
+        allDishes.forEach(dish -> {
+            if(dish.getUser_name().equals(name)&& dish.getPublish().equals("Public"))
+                dishes.add(dish);
+        });
+        model.addAttribute("dishes",dishes);
+        model.addAttribute("name", name);
+        return "myPublicDishes";
+    }
+
     @GetMapping("/add")
     public String get(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -49,7 +87,7 @@ public class MainController {
 
     @PostMapping("/add")
     public String addNewDish(@RequestParam String dish_name, @RequestParam String dish_desc,
-                             @RequestParam String dish_recipe, Model model) {
+                                   @RequestParam String dish_recipe, @RequestParam (defaultValue = " ")String publish , Model model) {
         List<String> errors = new ArrayList<>();
         Iterable<Dish> dishes = dishRepository.findAll();
         Iterable<Dish> allDishes = dishRepository.findAll();
@@ -69,7 +107,7 @@ public class MainController {
         if(dish_recipe.length()>1500)errors.add("Fields Dish recipe is too long (max 1500 symbols)");
         if(dish_desc.isEmpty()||dish_name.isEmpty()||dish_recipe.isEmpty())errors.add("All fields must be complete");
         if(errors.isEmpty() && !dish_desc.isEmpty() && !dish_name.isEmpty() && !dish_recipe.isEmpty()){
-            Dish dish = new Dish(user_name,dish_name,dish_desc,dish_recipe);
+            Dish dish = new Dish(user_name,dish_name,dish_desc,dish_recipe,publish);
             dishRepository.save(dish);
             List<Dish> dishes_1 = new ArrayList<>();
             allDishes.forEach(dish_1 -> {
@@ -78,7 +116,8 @@ public class MainController {
             });
             model.addAttribute("dishes",dishes);
             model.addAttribute("name", user_name);
-            return "redirect: ";
+            String redirectUrl = "all_my_dishes";
+            return "redirect:" + redirectUrl;
         }
         else {
             model.addAttribute("placeholders", placeholders);
@@ -88,7 +127,7 @@ public class MainController {
     }
 
     @RequestMapping("/delete{dish_name}")
-    public String deleteDish(@PathVariable String dish_name, Model model) {
+    public ModelAndView deleteDish(@PathVariable String dish_name, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         Iterable<Dish> allDishes = dishRepository.findAll();
@@ -105,32 +144,38 @@ public class MainController {
         });
         model.addAttribute("dishes",dishes);
         model.addAttribute("name", name);
-        return "redirect: ";
+        String projectUrl ="http://localhost:8080/all_my_dishes";
+        return new ModelAndView("redirect:" + projectUrl);
 
     }
-
     @RequestMapping("/edit{dish_name}")
     public String editDish(@PathVariable String dish_name, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         Iterable<Dish> allDishes = dishRepository.findAll();
         List<String> placeholders = new ArrayList<>();
+        List<Boolean> active = new ArrayList<>();
         allDishes.forEach(dish -> {
             if(dish.getUser_name().equals(name)&&dish.getDish_name().equals(dish_name)){
                 placeholders.add(dish_name);
                 placeholders.add(dish.getDish_desc());
                 placeholders.add(dish.getDish_recipe());
+                if(dish.getPublish().equals("Public")) active.add(true);
+                else active.add(false);
             }
         });
+        model.addAttribute("active", active);
         model.addAttribute("placeholders", placeholders);
         model.addAttribute("name", name);
         return "edit";
 
     }
 
+
+
     @PostMapping("/edit{dish_name}")
     public String saveEditedDish(@RequestParam String dish_name, @RequestParam String dish_desc,
-                             @RequestParam String dish_recipe, Model model) {
+                             @RequestParam String dish_recipe,@RequestParam (defaultValue = " ")String publish, Model model) {
         List<String> errors = new ArrayList<>();
         Iterable<Dish> dishes = dishRepository.findAll();
         Iterable<Dish> allDishes = dishRepository.findAll();
@@ -149,7 +194,7 @@ public class MainController {
                    dishRepository.deleteById(dish.getId());
                 }
             });
-            Dish dish = new Dish(user_name,dish_name,dish_desc,dish_recipe);
+            Dish dish = new Dish(user_name,dish_name,dish_desc,dish_recipe,publish);
             dishRepository.save(dish);
             List<Dish> dishes_1 = new ArrayList<>();
             allDishes.forEach(dish_1 -> {
@@ -158,11 +203,25 @@ public class MainController {
             });
             model.addAttribute("dishes",dishes_1);
             model.addAttribute("name", user_name);
-            return "redirect: ";
+            String redirectUrl = "all_my_dishes";
+            return "redirect:" + redirectUrl;
         }
         else {
+            List<Boolean> active = new ArrayList<>();
+            List<Dish> dishes_1 = new ArrayList<>();
+            /*allDishes.forEach(dish -> {
+                if(dish.getUser_name().equals(user_name)&&dish.getDish_name().equals(dish_name)){
+                    if(dish.getPublish().equals("Public")) active.add(true);
+                    else active.add(false);
+                }
+            });*/
+            if(publish.equals(true)) active.add(true);
+            else active.add(false);
+            model.addAttribute("name", user_name);
             model.addAttribute("placeholders", placeholders);
+            model.addAttribute("active", active);
             model.addAttribute("errors", errors);
+            String redirectUrl = "edit";
             return "edit";
         }
     }

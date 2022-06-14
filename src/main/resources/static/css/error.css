@@ -1,0 +1,55 @@
+body {
+    background-image: url("/images/double-bubble-outline.png");
+}
+
+.page-wrap {
+    min-height: 100%;
+}
+
+.help_text_oops{
+    margin:0;
+    padding:0;
+    width:100%;
+    text-align:center;
+    position: absolute;
+    background: -webkit-linear-gradient(#2c3cd1, #ff5e97);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size:850%;
+    z-index: -1;
+
+}
+.help_text_oops{
+    top: -30%;
+}
+
+
+.text{
+    font-family: "Anton", sans-serif;
+    font-size:1200%;
+    margin-top:50%;
+    margin:0;
+    padding:0;
+
+}
+
+.help_text{
+    font-size:200%;
+    margin:0;
+    padding:0;
+    width:100%;
+    text-align:center;
+    top: 90%;
+    position: absolute;
+    font-family: 'Montserrat Alternates', sans-serif;
+    text-shadow: 1px 1px 3px #ff5e97;
+}
+
+.frame{
+    text-align: center;
+    position: relative;
+    margin-top:15%;
+}
+
+

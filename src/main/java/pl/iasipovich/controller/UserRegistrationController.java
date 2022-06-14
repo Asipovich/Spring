@@ -59,7 +59,7 @@ public class UserRegistrationController {
 
         if(errors.isEmpty() && !registrationDto.getEmail().isEmpty() && !registrationDto.getFirstName().isEmpty() && !registrationDto.getLastName().isEmpty() && !registrationDto.getPassword().isEmpty()){
             userService.save(registrationDto);
-            return "redirect:/registration?success";
+            return "redirect:/login";
         }
         else {
             model.addAttribute("errors",errors);

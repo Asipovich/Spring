@@ -34,23 +34,28 @@ public class Dish {
     @Column(name = "dish_recipe")
     private String dish_recipe;
 
+    @Column(name = "public")
+    private String publish;
+
     public Dish() {
 
     }
 
-    public Dish( String user_name, String dish_name, String dish_desc,String dish_recipe) {
+    public Dish( String user_name, String dish_name, String dish_desc,String dish_recipe,String publish) {
         this.user_name = user_name;
         this.dish_name = dish_name;
         this.dish_desc = dish_desc;
         this.dish_recipe = dish_recipe;
+        this.publish = publish;
     }
 
-    public Dish(Long id, String user_name, String dish_name, String dish_desc, String dish_recipe) {
+    public Dish(Long id, String user_name, String dish_name, String dish_desc, String dish_recipe,String publish) {
         this.id = id;
         this.user_name = user_name;
         this.dish_name = dish_name;
         this.dish_desc = dish_desc;
         this.dish_recipe = dish_recipe;
+        this.publish = publish;
     }
 
     public Long getId() {
@@ -91,5 +96,13 @@ public class Dish {
 
     public void setDish_recipe(String dish_recipe) {
         this.dish_recipe = dish_recipe;
+    }
+
+    public String getPublish() {
+        return publish;
+    }
+
+    public void setPublish(String publish) {
+        this.publish = publish;
     }
 }

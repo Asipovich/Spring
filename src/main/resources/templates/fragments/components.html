@@ -6,9 +6,9 @@
 <body>
 
 <header th:fragment="navbar_fragment">
-	<nav class="navbar sticky-top navbar-expand-lg navbar-light ">
+	<nav class="navbar navbar-expand-lg navbar-light ">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/home"><img src="/images/favicon.png" alt="icon" ></a>
+			<a class="navbar-brand" href="/"><img src="/images/favicon.png" alt="icon" ></a>
 			<div class="toggler">
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -17,11 +17,21 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="navig-link home"  href="/"> Hungry Student </a></li>
+					<li class="nav-item">
+						<a  class="navig-link" aria-current="page" href="/">Cooking Secrets</a >
+					</li>
+					<li class="nav-item dropdown">
+						<a class="navig-link offer" href="#" > My recipies </a>
+						<div class="dropdown-menu"  aria-labelledby="submenu">
+							<a class="dropdown-item" href="/all_my_dishes"> All </a>
+							<a class="dropdown-item" href="/public"> Public </a>
+						</div>
+					</li>
+
 				</ul>
 				<div class="toggler">
 
-					<div class="out">
+					<div class="out ">
 						<div th:each="el:${name}">
 							<p th:text="${el}"></p>
 						</div>
@@ -37,62 +47,56 @@
 	</nav>
 </header>
 
-<footer th:fragment="footer_fragment">
-	<footer class="text-center text-lg-start bg-light text-muted">
-		<section class="d-flex foot_1 justify-content-center justify-content-lg-between p-4 border-bottom">
-			<div class="me-5 d-none d-lg-block">
-				<span>Get connected with us on social networks:</span>
-			</div>
-			<div>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-facebook-square"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-twitter"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-google"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-instagram"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-linkedin"></i>
-				</a>
-				<a href="" class="me-4 text-reset">
-					<i class="fab fa-github"></i>
-				</a>
-			</div>
-		</section>
-		<section class="">
-			<div class="container text-centertext-md-start mt-5" >
-				<div class="row mt-3">
-					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-						<h6 class="text-uppercase fw-bold mb-4">
-							</i>Hungry Student
-						</h6>
-						<p>
-							Smart cooking will become your domain. Review your food reserves and come back to us for some great ideas.
-						</p>
+<div th:fragment="footer_fragment" >
+	<footer class="footer text-center text-white" style="background-color: #1f2935">
+		<div class="footer-wrap" style="background-color: #1f2935">
+			<div class="container">
+				<section class="text-center ">
+					<div class="text-center d-flex justify-content-center ">
+						<a href="#" class="pb-4 pt-4 col-1 contact">
+							<i class="fab fa-facebook-f"></i>
+						</a>
+						<a href="#" class="pb-4 pt-4 col-1 contact">
+							<i class="fab fa-instagram"></i>
+						</a>
+						<a href="#" class="pb-4 pt-4 col-1 contact">
+							<i class="fab fa-linkedin"></i>
+						</a>
 					</div>
-					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-						<h6 class="text-uppercase fw-bold mb-4">
-							Contact
-						</h6>
-						<p><i class="fas fa-home me-3"></i> Poland, Lublin, PL</p>
-						<p>
-							<i class="fas fa-envelope me-3"></i>
-							hungry-student@gmail.com
-						</p>
+				</section>
+				<hr class="mb-4 mt-0" />
+				<section >
+					<div class="row d-flex justify-content-center">
+						<div class="col-lg-8">
+							<p>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+								distinctio earum repellat quaerat voluptatibus placeat nam,
+								commodi optio pariatur est quia magnam eum harum corrupti
+								dicta, aliquam sequi voluptate quas.
+							</p>
+						</div>
 					</div>
-				</div>
+				</section>
+
+				<!--<section class="mb-3">
+					<div class="text-center d-flex justify-content-center ">
+						<div class="col-md-2">
+							<h6 class="text-uppercase font-weight-bold">
+								<a href="#!" class=" contact">Contact</a>
+							</h6>
+						</div>
+					</div>
+				</section>-->
+
 			</div>
-		</section>
-		<div class="text-center foot_3 p-4" >
-			© 2021 Copyright: <i class="fas fa-hamburger"></i> Hungry Student
-			<!--<a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>-->
+			<div
+					class="text-center p-3"
+					style="background-color: rgba(0, 0, 0, 0.2)">
+				© 2022 Copyright:
+				<a class="text-white" style="text-decoration:none" href="">CookingSecrets.com</a>
+			</div>
 		</div>
 	</footer>
-</footer>
+</div>
 </body>
 </html>

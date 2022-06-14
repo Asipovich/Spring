@@ -1,76 +1,156 @@
 body{
-  background-color: #1f2935;
+    background-image: url("/images/double-bubble-outline.png");
+    text-align: center;
+    scrollbar-track-color: transparent;
+        overflow: overlay;
 }
+body::-webkit-scrollbar-track {
+    background-color: transparent !important;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-image: url("/images/scroll.jpg");
+    border-radius: 0.2vw;
+}
+body::-webkit-scrollbar {
+    width: 0.7vw;
+    height: 4vh;
+}
+
+
+#cookieinfo * {
+    margin: 0px;
+    padding: 0px;
+}
+
+#cookieinfo {
+    position: fixed;
+    font-size: 80%;
+    font-family: Arial, Verdana, sans-serif;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-color: rgba(50, 51, 52, 0.9);
+    padding: 1%;
+    box-shadow: 0px -1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#cookieinfo h6 {
+    font-size: 150%;
+    font-weight: bold;
+    color: #cdd7da;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
+    margin-bottom: 7px;
+}
+
+#cookieinfo p {
+    font-size: 100%;
+    color: #cdd7da;
+    line-height: 1.5em;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.cookielink{
+    color: #fabbb6;
+    text-decoration: none;
+}
+
+.cookielink:hover{
+    color: #fa786e;
+}
+
+#cookie {
+    display: block;
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+    width: 2vw;
+    height: 2vw;
+    border-radius: 2vw;
+    font-size: 1.3vw;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #fa837a;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+#cookie:hover {
+    background-color: #fabbb6;
+}
+
 .sing-in-panel {
-  background-color: #1f2935;
-  margin-bottom: 3%;
-  height: 94%;
-  border-radius: 10px;
-  text-align: center;
-   -webkit-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
-    -moz-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
-    box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
+    background-color: #1f2935;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    height: 94%;
+    border-radius: 1%;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
+    -moz-box-shadow: 0px 0px 10px 2px  rgba(204, 204, 204, 0.9);
+    box-shadow: 0px 0px 10px 2px  rgba(204, 204, 204, 0.9);
 }
 
 .margin {
-  margin-bottom: 3%;
+    margin-bottom: 7%;
 }
+
 .sing-in-label {
-  margin-top: 50px;
-  color: white;
-  font-weight: 700;
-  font-size: 40px;
-  font-family: "Montserrat", sans-serif;
+    margin-top: 5%;
+    color: white;
+    font-weight: 700;
+    font-size: 300%;
+    font-family: "Montserrat", sans-serif;
 }
 
 .sing-in-label-2 {
-  margin-top: 8px;
-  color: rgb(214, 214, 214);
-  font-size: 17px;
-  font-family: "Montserrat", sans-serif;
-  margin-bottom: 50px;
+    margin-top: 5%;
+    color: rgb(214, 214, 214);
+    font-size: 100%;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 5%;
 }
 
 input[type="password"] {
-  margin-top: 20px;
+    margin-top: 5%;
 }
 
 input[type="password"],
 input[type="email"] {
-  width: 90%;
-  margin-left: 5%;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
 }
 
 input[type="email"]:focus,
 input[type="password"]:focus {
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
-  -moz-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
-  box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
-  border: 1px solid #ffffff;
-  color: black;
-  font-size: 20px;
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
+    box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
+    border: 1px solid #ffffff;
+    color: black;
 }
 
 
 .form-label {
-  color: #ffffff;
-  font-size: 17px;
+    color: #ffffff;
+    font-size: 100%;
 }
 
 button[type="submit"] {
-  margin-top: 0px;
-  margin-bottom: 40px;
+    margin-top: 5%;
+    margin-bottom: 3%;
 }
 
 .row {
-  text-align: center;
+    margin-bottom:3%;
 }
 
 button[type="submit"]:focus {
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
-  -moz-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
-  box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
-  border: 1px solid #ffffff;
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
+    box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.9);
+    border: 1px solid #ffffff;
 }
 
 input[type="password"]:placeholder,
@@ -79,4 +159,9 @@ input[type="password"]:focus,
 input[type="email"]:focus
 {
     color:black;
+}
+
+.alert{
+    margin:0;
+    color: #fa837a;
 }

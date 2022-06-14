@@ -2,34 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
     <script th:include="fragments/header :: headerScripts" th:remove="tag"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hungry student</title>
-    <meta name="title" content="Hungry student">
-    <meta name="description" content="Application for students who want to learn cooking">
-    <meta name="keywords" content="for students, hungry, eat, meal, burger, student ">
-    <meta name="author" content="Ivan Asipovich">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <link rel="shortcut icon" href="/images/favicon.png" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fjalla+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="/css/singInPanel.css" type="text/css">
+
 </head>
 <body>
 <div class="container">
-    <div class="row col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+    <div class="row col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <div class="margin"></div>
         <form th:action="@{/login}" method="post" class=" sing-in-panel ">
             <h2 class="sing-in-label">Sing In</h2>
-
-            <div th:if="${param.logout}">
-                <div class="alert alert-info">You have been logged out.</div>
-            </div>
             <p class="sing-in-label-2">Please enter your login and password!</p>
 
             <div class=" form-white ">
@@ -43,7 +25,7 @@
             </div>
 
             <div th:if="${param.error}" class>
-                <div class="alert alert-danger">Invalid username or password.</div>
+                <div class="alert ">Invalid username or password.</div>
             </div>
 
             <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
@@ -54,5 +36,6 @@
         </form>
     </div>
 </div>
+<script src="/js/funkcje.js" type="text/javascript"></script>
 </body>
 </html>
